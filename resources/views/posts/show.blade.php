@@ -11,6 +11,7 @@
     </head>
     </x-slot>
     <body>
+        <a href="">{{ $post->subject->name }}</a>
         <h1 class="title">
             {{ $post->title }}
         </h1>

@@ -14,16 +14,21 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
-        'category_id'
+        'category_id',
+        'subject_id'
     ];
 
         public function getPaginateByLimit(int $limit_count = 5)
     {
-        return $this::with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::with('subject')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
         public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+        public function subject()
+    {
+        return $this->belongsTo(Subject::class);
     }
 }
