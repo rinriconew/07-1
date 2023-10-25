@@ -9,7 +9,7 @@
     </x-slot>
     <body>  
         <h1>Blog Name</h1>
-        <form action="/posts" method="POST">
+        <form action="/post" method="POST">
             @csrf
             <div class="title">
                 <h2>Title</h2>
@@ -21,6 +21,14 @@
                 <select name="post[category_id]">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="subject">
+                <h2>Subject</h2>
+                <select name="post[subject_id]">
+                    @foreach($subjects as $subject)
+            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                     @endforeach
                 </select>
             </div>
