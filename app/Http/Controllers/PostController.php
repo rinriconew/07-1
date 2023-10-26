@@ -20,14 +20,19 @@ class PostController extends Controller
     public function search(Request $request, Post $post)
     {
         $keyword = $request->input('keyword');
-       
-        if ($keyword) {
-            $search = Post::where('title', 'like', '%'.$keyword.'%')->get();
-            return view('posts.search');
+        $search = Post::where('title', 'like', '%'.$keyword.'%')->get();
+        
+        if($search->isEmpty() || !isset($keyword)){
+            //dd($search);
+            return redirect('posts/no_results');
         }
         else{
-            return view('posts.no_results');
+            //dd($search);
+            return view('posts.search');
         }
+    }
+    public function no_results(){
+        return view('posts.no_results');
     }
     
     public function show(Post $post)
